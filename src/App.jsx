@@ -35,7 +35,7 @@ export default function App() {
       const fuel = s.idling * 0.75;             // L/hr, modelled idling burn
       setStats({
         health: Math.round(100 * (0.55 * ratio + 0.45 * s.avgSpeedRatio)),
-        flow: Math.round(s.flowVph / 8), // network total / 8 junctions = avg per junction
+        flow: Math.round(s.flowVph), // single junction: total counted throughput
         delay: Math.round(s.delaySec),
         co2: (fuel * 2.31).toFixed(1),          // kg CO2 per litre petrol ~ 2.31
         fuel: fuel.toFixed(1),

@@ -1,5 +1,5 @@
 import { buildLanes, posAt } from './lanes.js';
-import { VEHICLE_DENSITY, RING_MIDDLE } from '../config.js';
+import { VEHICLE_DENSITY } from '../config.js';
 
 // Vehicle archetypes: [key, length, baseSpeed m/s, share]
 export const VEHICLE_TYPES = [
@@ -40,11 +40,11 @@ export function createSim() {
       vehicles.push(v);
     }
     lane.vehicles.sort((a, b) => a.s - b.s);
-    // Flow cross-sections: Middle Circle ring lanes + every radial at its
-    // Middle Circle crossing = "vehicles/hour passing the junction".
+    // Flow cross-sections: inbound arms at their rotary entry + the
+    // flyover deck = "vehicles/hour passing the junction".
     lane.marker = -1;
-    if (lane.kind === 'ring' && Math.abs(lane.r - RING_MIDDLE) < 6) lane.marker = lane.length * 0.5;
-    if (lane.kind === 'radial') lane.marker = lane.stops[0] + 10;
+    if (lane.kind === 'radial' && !lane.dirOut) lane.marker = lane.stops[0] + 4;
+    if (lane.kind === 'fly') lane.marker = lane.length * 0.5;
   }
 
   const sim = {

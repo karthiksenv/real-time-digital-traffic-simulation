@@ -59,7 +59,7 @@ export default function HUD({
       {selected && (
         <div className="hud panel dock-junction">
           <div className="hud-title">
-            junction · inner circle
+            junction · cyber towers
             <button className="close" onClick={() => setSelected(false)}>×</button>
           </div>
           <Metric label="live speed" value={reading.currentSpeed} unit="km/h" />

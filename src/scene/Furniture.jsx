@@ -2,49 +2,63 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import {
-  PARK_RADIUS, RING_INNER, RING_MIDDLE, RING_OUTER, RADIAL_COUNT,
+  ISLAND_RADIUS, ROTARY_R, ARM_COUNT, ARM_START, ARM_END,
 } from '../config.js';
-import { ringGreen, radialGreen } from '../sim/lanes.js';
+import { radialGreen } from '../sim/lanes.js';
 
 const TAU = Math.PI * 2;
 
-// Streetlights, traffic signals, instanced low-poly trees, the CP flag.
+// Streetlights, arm-entry traffic signals, instanced low-poly trees,
+// and a "cyber" sculpture on the rotary island.
 export default function Furniture({ night, simRef }) {
-  // ── static placement ────────────────────────────────────────────────
   const { lights, trees } = useMemo(() => {
     let seed = 42;
     const rand = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
     const lights = [];
-    for (const [r, n] of [[RING_INNER, 22], [RING_MIDDLE, 36], [RING_OUTER, 48]]) {
-      for (const side of [-9.5, 9.5]) {
-        for (let i = 0; i < n; i++) {
-          const a = (i / n) * TAU + (side > 0 ? TAU / n / 2 : 0);
-          lights.push({ x: (r + side) * Math.cos(a), z: (r + side) * Math.sin(a) });
+    for (let i = 0; i < 12; i++) { // around the rotary
+      const a = (i / 12) * TAU;
+      lights.push({ x: (ROTARY_R + 11) * Math.cos(a), z: (ROTARY_R + 11) * Math.sin(a) });
+    }
+    for (let k = 0; k < ARM_COUNT; k++) { // along the arms
+      const a = (k * TAU) / ARM_COUNT;
+      for (let rr = ARM_START + 15; rr < ARM_END; rr += 30) {
+        for (const lat of [-9.5, 9.5]) {
+          lights.push({
+            x: rr * Math.cos(a) - lat * Math.sin(a),
+            z: rr * Math.sin(a) + lat * Math.cos(a),
+          });
         }
       }
     }
     const trees = [];
-    for (let i = 0; i < 70; i++) { // central park
-      const a = rand() * TAU, r = 8 + rand() * (PARK_RADIUS - 12);
-      if (r > 24 && r < 32) continue; // keep walkway clear
-      trees.push({ x: r * Math.cos(a), z: r * Math.sin(a), s: 0.8 + rand() * 0.7 });
+    for (let i = 0; i < 20; i++) { // rotary island
+      const a = rand() * TAU, r = 18 + rand() * (ISLAND_RADIUS - 22);
+      trees.push({ x: r * Math.cos(a), z: r * Math.sin(a), s: 0.7 + rand() * 0.5 });
     }
-    for (let i = 0; i < 140; i++) { // greenery along pavements
-      const ring = [RING_INNER, RING_MIDDLE, RING_OUTER][Math.floor(rand() * 3)];
-      const a = rand() * TAU;
-      const spoke = Math.round((a / TAU) * RADIAL_COUNT) * (TAU / RADIAL_COUNT);
-      const r = ring + (rand() > 0.5 ? 12.5 : -12.5);
-      if (Math.abs(Math.atan2(Math.sin(a - spoke), Math.cos(a - spoke))) < 10 / r) continue;
-      trees.push({ x: r * Math.cos(a), z: r * Math.sin(a), s: 0.6 + rand() * 0.5 });
+    for (let i = 0; i < 110; i++) { // avenue greenery along the arms
+      const k = Math.floor(rand() * ARM_COUNT);
+      const a = (k * TAU) / ARM_COUNT;
+      const rr = ARM_START + 12 + rand() * (ARM_END - ARM_START - 20);
+      const lat = (12 + rand() * 9) * (rand() > 0.5 ? 1 : -1);
+      trees.push({
+        x: rr * Math.cos(a) - lat * Math.sin(a),
+        z: rr * Math.sin(a) + lat * Math.cos(a),
+        s: 0.6 + rand() * 0.5,
+      });
     }
     return { lights, trees };
   }, []);
 
-  // ── materials we mutate on mode change ──────────────────────────────
   const lampMat = useMemo(() => new THREE.MeshStandardMaterial({
     color: '#fff2cf', emissive: '#ffca6a', emissiveIntensity: 0.15,
   }), []);
-  useEffect(() => { lampMat.emissiveIntensity = night ? 3.2 : 0.15; }, [night, lampMat]);
+  const orbMat = useMemo(() => new THREE.MeshStandardMaterial({
+    color: '#bfe8e2', emissive: '#3fd8c8', emissiveIntensity: 0.2,
+  }), []);
+  useEffect(() => {
+    lampMat.emissiveIntensity = night ? 3.2 : 0.15;
+    orbMat.emissiveIntensity = night ? 2.4 : 0.2;
+  }, [night, lampMat, orbMat]);
 
   const poleRef = useRef();
   const lampRef = useRef();
@@ -77,18 +91,18 @@ export default function Furniture({ night, simRef }) {
     if (canopyRef.current.instanceColor) canopyRef.current.instanceColor.needsUpdate = true;
   }, [lights, trees]);
 
-  // ── traffic signals at radial crossings of Middle + Outer circles ───
+  // Signals face inbound traffic at each rotary entry
   const signalDefs = useMemo(() => {
     const defs = [];
-    for (let k = 0; k < RADIAL_COUNT; k++) {
-      const a = (k * TAU) / RADIAL_COUNT;
-      for (const r of [RING_MIDDLE, RING_OUTER]) {
-        defs.push({
-          x: (r - 10) * Math.cos(a) - 8.5 * Math.sin(a),
-          z: (r - 10) * Math.sin(a) + 8.5 * Math.cos(a),
-          rot: -a,
-        });
-      }
+    for (let k = 0; k < ARM_COUNT; k++) {
+      const a = (k * TAU) / ARM_COUNT;
+      const rr = ARM_START + 7;
+      const lat = -8.8; // inbound side (left-hand traffic)
+      defs.push({
+        x: rr * Math.cos(a) - lat * Math.sin(a),
+        z: rr * Math.sin(a) + lat * Math.cos(a),
+        rot: Math.PI / 2 - a,
+      });
     }
     return defs;
   }, []);
@@ -97,14 +111,13 @@ export default function Furniture({ night, simRef }) {
 
   useFrame(() => {
     const t = simRef.current ? simRef.current.t : 0;
-    const rg = ringGreen(t); // ring phase drives the heads we show
-    for (const m of redMats.current) if (m) m.emissiveIntensity = rg ? 0.05 : 2.6;
-    for (const m of greenMats.current) if (m) m.emissiveIntensity = rg ? 2.6 : 0.05;
+    const go = radialGreen(t); // arm phase drives these heads
+    for (const m of redMats.current) if (m) m.emissiveIntensity = go ? 0.05 : 2.6;
+    for (const m of greenMats.current) if (m) m.emissiveIntensity = go ? 2.6 : 0.05;
   });
 
   return (
     <group>
-      {/* streetlight poles + emissive heads */}
       <instancedMesh ref={poleRef} args={[undefined, undefined, lights.length]} castShadow>
         <cylinderGeometry args={[0.12, 0.18, 7.5, 6]} />
         <meshStandardMaterial color="#3b3f45" roughness={0.6} metalness={0.6} />
@@ -113,7 +126,6 @@ export default function Furniture({ night, simRef }) {
         <sphereGeometry args={[0.38, 10, 8]} />
       </instancedMesh>
 
-      {/* trees */}
       <instancedMesh ref={trunkRef} args={[undefined, undefined, trees.length]} castShadow>
         <cylinderGeometry args={[0.22, 0.32, 2.8, 6]} />
         <meshStandardMaterial color="#5a4632" roughness={1} />
@@ -123,7 +135,6 @@ export default function Furniture({ night, simRef }) {
         <meshStandardMaterial roughness={1} />
       </instancedMesh>
 
-      {/* traffic signal heads */}
       {signalDefs.map((s, i) => (
         <group key={i} position={[s.x, 0, s.z]} rotation-y={s.rot}>
           <mesh position={[0, 2.6, 0]} castShadow>
@@ -151,18 +162,19 @@ export default function Furniture({ night, simRef }) {
         </group>
       ))}
 
-      {/* the giant CP tricolour in Central Park */}
-      <group position={[0, 0, 0]}>
-        <mesh position={[0, 19, 0]} castShadow>
-          <cylinderGeometry args={[0.25, 0.45, 38, 8]} />
-          <meshStandardMaterial color="#9aa0a8" metalness={0.7} roughness={0.35} />
+      {/* rotary island sculpture: steel arc + floating orb */}
+      <group>
+        <mesh position-y={1} castShadow>
+          <cylinderGeometry args={[3.2, 3.8, 2, 16]} />
+          <meshStandardMaterial color="#8f948c" roughness={0.8} />
         </mesh>
-        {['#ff9933', '#f4f4f0', '#138808'].map((c, i) => (
-          <mesh key={c} position={[4.5, 36 - i * 2, 0]} castShadow>
-            <boxGeometry args={[9, 2, 0.12]} />
-            <meshStandardMaterial color={c} roughness={0.9} side={THREE.DoubleSide} />
-          </mesh>
-        ))}
+        <mesh position-y={2} castShadow>
+          <torusGeometry args={[9, 0.7, 8, 28, Math.PI]} />
+          <meshStandardMaterial color="#aab2b8" roughness={0.3} metalness={0.85} />
+        </mesh>
+        <mesh position-y={12.5} castShadow material={orbMat}>
+          <sphereGeometry args={[2.6, 20, 16]} />
+        </mesh>
       </group>
     </group>
   );

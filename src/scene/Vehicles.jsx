@@ -48,7 +48,7 @@ export default function Vehicles({ sim, night, simSpeed }) {
   const refs = { car: useRef(), auto: useRef(), bus: useRef(), bike: useRef() };
   const lightRef = useRef();
   const dummy = useMemo(() => new THREE.Object3D(), []);
-  const out = useMemo(() => ({ x: 0, z: 0, h: 0 }), []);
+  const out = useMemo(() => ({ x: 0, y: 0, z: 0, h: 0 }), []);
 
   // per-instance colours, once
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function Vehicles({ sim, night, simSpeed }) {
     let li = 0;
     for (const v of sim.vehicles) {
       posAt(v.lane, v.s, out);
-      dummy.position.set(out.x, 0.05, out.z);
+      dummy.position.set(out.x, 0.05 + out.y, out.z);
       dummy.rotation.set(0, out.h, 0);
       dummy.scale.set(1, 1, 1);
       dummy.updateMatrix();
@@ -88,11 +88,11 @@ export default function Vehicles({ sim, night, simSpeed }) {
         const fz = out.z + ch * (v.len / 2);
         const lx = ch * 0.55, lz = -sh * 0.55;
         dummy.rotation.set(0, 0, 0);
-        dummy.position.set(fx + lx, 0.75, fz + lz);
+        dummy.position.set(fx + lx, 0.75 + out.y, fz + lz);
         dummy.updateMatrix();
         lightMesh.setMatrixAt(li++, dummy.matrix);
         if (v.type !== 'bike') {
-          dummy.position.set(fx - lx, 0.75, fz - lz);
+          dummy.position.set(fx - lx, 0.75 + out.y, fz - lz);
           dummy.updateMatrix();
           lightMesh.setMatrixAt(li++, dummy.matrix);
         }

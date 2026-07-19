@@ -1,12 +1,17 @@
 # Real-Time Digital Traffic Simulation
 
-A 3D digital twin of Connaught Place, New Delhi, running in the browser. I built
-it to explore what a "living" traffic dashboard could look like: instead of a
-top-down map with colored lines, you get a cinematic street-level view of CP's
-concentric ring roads and white colonnaded arcades, with about 1,350 simulated
-vehicles — cars, auto-rickshaws, buses, two-wheelers — queuing at signals and
-flowing on green. Live congestion data from the TomTom Traffic API drives how
-fast the network moves and how red the roads look.
+A 3D digital twin of the Cyber Towers junction in Hitech City, Hyderabad,
+running in the browser. I built it to explore what a "living" traffic dashboard
+could look like: instead of a top-down map with colored lines, you get a
+cinematic street-level view of a signalised four-arm junction with its central
+rotary, the E-W flyover passing over it, and the glass IT-corridor skyline —
+including a stylised cylindrical Cyber Towers — with about 1,000 simulated
+vehicles (cars, auto-rickshaws, buses, two-wheelers) queuing at signals while
+flyover traffic sails over the jam. Live congestion data from the TomTom
+Traffic API drives how fast the network moves and how red the roads look.
+
+(The `main` branch holds the original Connaught Place, New Delhi version of
+this scene; this branch remodels it for Hitech City.)
 
 Stack: Vite + React + Three.js (`three`, `@react-three/fiber`,
 `@react-three/drei`, `@react-three/postprocessing`).
@@ -34,14 +39,14 @@ fetched, rendered, and discarded, never stored.
 Drag to orbit and scroll to zoom (the camera never goes top-down). Toggle
 Cinematic for a slow automatic orbit, Night for streetlights, headlights and
 window glows, Rain for particle rain and wet reflective roads. Sim speed runs
-at 1×, 10×, or 60×. Clicking the central park opens a panel comparing live
+at 1×, 10×, or 60×. Clicking the rotary island opens a panel comparing live
 speed against free-flow speed alongside the simulation's own stats. The HUD
 shows network health, junction flow, average delay, and idling CO₂/fuel.
 
 ## Honest caveats
 
-The geometry is stylized, not surveyed — radii, block heights, and signal
-placement are eyeballed from maps and photos of CP. The traffic model is a
+The geometry is stylized, not surveyed — the rotary radius, flyover profile,
+and tower placement are eyeballed from maps and photos of the junction. The traffic model is a
 simple car-following model with fixed signal cycles, good enough to make
 congestion look and behave plausibly, not for engineering conclusions. The
 CO₂ and fuel figures are modelled estimates (0.75 L/hr per idling vehicle,
@@ -55,15 +60,16 @@ quantitative as illustrative.
 feed follows the coordinates automatically), plus all the visual tunables:
 bloom strength, sun angle, fog density, vehicle density, ring radii, signal
 cycle. The lane network lives in `src/sim/lanes.js` and the scenery in
-`src/scene/` — CP's ring-and-spoke layout is baked in there, so a different
-road layout means rewriting those two places.
+`src/scene/` — the rotary-plus-flyover layout is baked in there, so a different
+road layout means rewriting those two places (compare this branch against
+`main` to see exactly what a re-skin touches).
 
 ## Layout
 
 ```
 src/
   config.js            # all tunables
-  sim/lanes.js         # ring/radial lane geometry + signal phases
+  sim/lanes.js         # rotary/arm/flyover lane geometry + signal phases
   sim/simulation.js    # car-following traffic model (substepped, 60x-stable)
   data/useTraffic.js   # TomTom fetch + demo fallback (never blocks the UI)
   scene/               # roads, arcades, furniture, vehicles, rain, post-fx
