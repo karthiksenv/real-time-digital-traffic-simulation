@@ -1,0 +1,194 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, 'Cascadia Mono', Consolas, monospace">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#e8b06a"/><stop offset="0.7" stop-color="#f2c98e"/><stop offset="1" stop-color="#f7d8a4"/>
+  </linearGradient>
+  <radialGradient id="vig" cx="0.5" cy="0.52" r="0.75">
+    <stop offset="0.55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#1a0e06" stop-opacity="0.5"/>
+  </radialGradient>
+  <linearGradient id="hbar" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#d9534f"/><stop offset="0.6" stop-color="#f0ad4e"/><stop offset="1" stop-color="#7bc47f"/>
+  </linearGradient>
+  <pattern id="rainp" width="26" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(12)">
+    <line x1="4" y1="0" x2="4" y2="20" stroke="#cfd8e2" stroke-width="1.2"/>
+    <line x1="17" y1="12" x2="17" y2="30" stroke="#cfd8e2" stroke-width="1"/>
+  </pattern>
+</defs>
+
+<rect width="1280" height="300" fill="url(#sky)"/>
+
+<circle cx="230" cy="288" r="200" fill="#ffd9a0" opacity="0.5"/><circle cx="230" cy="288" r="60" fill="#ffe9c4" opacity="0.9"/>
+
+
+<g opacity="0.85">
+  <rect x="20" y="242" width="46" height="58" fill="#c9a884"/>
+  <rect x="430" y="252" width="60" height="48" fill="#c2a281"/>
+  <rect x="512" y="238" width="34" height="62" fill="#b89877"/>
+  <rect x="700" y="248" width="52" height="52" fill="#c9a884"/>
+  <rect x="1130" y="236" width="44" height="64" fill="#b89877"/>
+  <rect x="1196" y="256" width="60" height="44" fill="#c2a281"/>
+  
+</g>
+
+<rect y="300" width="1280" height="420" fill="#8a7c64"/>
+<rect y="300" width="1280" height="26" fill="#9b8d74"/>
+
+
+<rect x="380" y="258" width="72" height="180" fill="#8ba3b8"/>
+<rect x="700" y="248" width="92" height="196" fill="#93a8b5"/>
+<rect x="806" y="278" width="64" height="166" fill="#a3b3bd"/>
+
+
+<rect x="55" y="335" width="300" height="130" fill="#85b2cf"/>
+<g stroke="#6d9cbb" stroke-width="1.5">
+  <line x1="55" y1="352" x2="355" y2="352"/><line x1="55" y1="368" x2="355" y2="368"/><line x1="55" y1="384" x2="355" y2="384"/><line x1="55" y1="400" x2="355" y2="400"/><line x1="55" y1="416" x2="355" y2="416"/><line x1="55" y1="432" x2="355" y2="432"/><line x1="55" y1="448" x2="355" y2="448"/>
+</g>
+<rect x="72" y="340" width="30" height="120" fill="#f0c890" opacity="0.45"/>
+
+<rect x="50" y="327" width="310" height="10" fill="#e9e6dc"/>
+
+<g>
+  <rect x="915" y="190" width="190" height="265" fill="#7fb4d6"/>
+  <rect x="930" y="190" width="26" height="265" fill="#e8c493" opacity="0.55"/>
+  <rect x="968" y="190" width="20" height="265" fill="#a8ccdf"/>
+  <rect x="1032" y="190" width="18" height="265" fill="#6aa2c4"/>
+  <rect x="1064" y="190" width="22" height="265" fill="#a8ccdf"/>
+  
+  <rect x="940" y="185" width="14" height="270" fill="#efece1"/>
+  <rect x="1003" y="185" width="14" height="270" fill="#efece1"/>
+  <rect x="1066" y="185" width="14" height="270" fill="#efece1"/>
+  <ellipse cx="1010" cy="190" rx="95" ry="26" fill="#cfe0ea"/>
+  <ellipse cx="1010" cy="190" rx="95" ry="26" fill="none" stroke="#c8c4b8" stroke-width="3" opacity="1"/>
+  <rect x="995" y="148" width="30" height="44" fill="#e5e1d4"/>
+</g>
+
+<polygon points="0,486 1280,486 1280,540 0,540" fill="#3a3b41"/>
+<polygon points="0,486 1280,486 1280,540 0,540" fill="#4d2f26" opacity="0.32"/>
+
+<ellipse cx="620" cy="520" rx="340" ry="120" fill="#3a3b41"/>
+<ellipse cx="620" cy="520" rx="340" ry="120" fill="#4d2f26" opacity="0.28800000000000003"/>
+<ellipse cx="620" cy="520" rx="305" ry="107" fill="none" stroke="#d8d4c8" stroke-width="2" stroke-dasharray="14 18" opacity="0.7"/>
+<ellipse cx="620" cy="520" rx="255" ry="90" fill="none" stroke="#d8d4c8" stroke-width="2" stroke-dasharray="14 18" opacity="0.7"/>
+<ellipse cx="620" cy="514" rx="176" ry="64" fill="#b7b1a2"/>
+<ellipse cx="620" cy="510" rx="170" ry="60" fill="#4d7a3d"/>
+<ellipse cx="620" cy="512" rx="75" ry="26" fill="#b7b1a2" opacity="0.9"/>
+
+<path d="M 585 505 A 35 30 0 0 1 655 505" fill="none" stroke="#aab2b8" stroke-width="7"/>
+<circle cx="620" cy="468" r="8" fill="#bfe8e2"/>
+<g fill="#3f6631">
+  <ellipse cx="512" cy="492" rx="16" ry="12"/><ellipse cx="540" cy="502" rx="12" ry="9"/>
+  <ellipse cx="712" cy="490" rx="15" ry="11"/><ellipse cx="736" cy="500" rx="11" ry="9"/>
+  <ellipse cx="620" cy="548" rx="14" ry="10"/>
+</g>
+
+<polygon points="598,318 642,318 668,462 572,462" fill="#3a3b41"/>
+<line x1="620" y1="330" x2="620" y2="450" stroke="#d8d4c8" stroke-width="2" stroke-dasharray="8 12" opacity="0.6"/>
+
+<polygon points="500,632 740,632 880,720 360,720" fill="#3a3b41"/>
+<polygon points="500,632 740,632 880,720 360,720" fill="#4d2f26" opacity="0.32"/>
+<line x1="620" y1="640" x2="620" y2="720" stroke="#e6e2d6" stroke-width="4" opacity="1"/>
+<g fill="#e6e2d6" opacity="0.9">
+  <rect x="522" y="614" width="196" height="5"/>
+  <rect x="516" y="622" width="208" height="5"/>
+  <rect x="510" y="630" width="220" height="5"/>
+</g>
+
+<path d="M -10 456 Q 640 388 1290 456 L 1290 432 Q 640 364 -10 432 Z" fill="#2e2f35"/>
+<path d="M -10 432 Q 640 364 1290 432" fill="none" stroke="#b8b4a8" stroke-width="3"/>
+<path d="M -10 438 Q 640 370 1290 438" fill="none" stroke="#d8d4c8" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.7"/>
+<g fill="#8f8a80">
+  <polygon points="176,446 204,446 208,558 172,558"/>
+  <polygon points="356,432 384,432 388,548 352,548"/>
+  <polygon points="876,432 904,432 908,548 872,548"/>
+  <polygon points="1056,446 1084,446 1088,558 1052,558"/>
+</g>
+
+<g>
+  <rect x="120" y="414" width="26" height="9" rx="2" fill="#e8e8ea"/>
+  <rect x="300" y="402" width="26" height="9" rx="2" fill="#b8bcc2"/>
+  <rect x="470" y="386" width="38" height="10" rx="2" fill="#e2711d"/>
+  <rect x="660" y="382" width="26" height="9" rx="2" fill="#f2c81e"/>
+  <rect x="850" y="394" width="26" height="9" rx="2" fill="#e8e8ea"/>
+  <rect x="1030" y="408" width="26" height="9" rx="2" fill="#2f3338"/>
+  
+</g>
+
+<g>
+  <rect x="318" y="540" width="30" height="12" rx="2" fill="#e8e8ea" transform="rotate(-18 333 546)"/>
+  <rect x="398" y="572" width="30" height="12" rx="2" fill="#f2c81e" transform="rotate(-10 413 578)"/>
+  <rect x="488" y="596" width="30" height="12" rx="2" fill="#d5d8dc" transform="rotate(-5 503 602)"/>
+  <rect x="742" y="594" width="30" height="12" rx="2" fill="#3f8a2f" transform="rotate(6 757 600)"/>
+  <rect x="838" y="570" width="44" height="13" rx="2" fill="#e2711d" transform="rotate(14 860 576)"/>
+  <rect x="908" y="540" width="30" height="12" rx="2" fill="#e8e8ea" transform="rotate(22 923 546)"/>
+  <rect x="500" y="428" width="22" height="8" rx="2" fill="#b8bcc2"/>
+  <rect x="742" y="426" width="22" height="8" rx="2" fill="#e8e8ea"/>
+</g>
+
+<g>
+  <rect x="556" y="648" width="34" height="13" rx="2" fill="#e8e8ea"/>
+  <rect x="552" y="664" width="36" height="14" rx="2" fill="#f2c81e"/>
+  <rect x="548" y="681" width="38" height="15" rx="3" fill="#d5d8dc"/>
+  <rect x="543" y="699" width="41" height="17" rx="3" fill="#7a1f1f"/>
+  <rect x="596" y="655" width="10" height="12" rx="2" fill="#2f3338"/>
+  <rect x="598" y="674" width="11" height="13" rx="2" fill="#3a3f45"/>
+  <rect x="648" y="660" width="38" height="15" rx="3" fill="#e8e8ea"/>
+  <rect x="668" y="700" width="46" height="18" rx="3" fill="#3f7d3a"/>
+  
+</g>
+
+<g stroke="#3b3f45" stroke-width="3">
+  <line x1="395" y1="652" x2="395" y2="596"/><line x1="845" y1="652" x2="845" y2="596"/>
+  <line x1="292" y1="546" x2="292" y2="498"/><line x1="948" y1="546" x2="948" y2="498"/>
+</g>
+<g fill="#ffe9b8"><circle cx="395" cy="594" r="5"/><circle cx="845" cy="594" r="5"/><circle cx="292" cy="496" r="4"/><circle cx="948" cy="496" r="4"/></g>
+
+
+<line x1="722" y1="640" x2="722" y2="592" stroke="#2c2f33" stroke-width="4"/>
+<rect x="715" y="576" width="14" height="22" rx="3" fill="#17181a"/>
+
+<circle cx="722" cy="583" r="4" fill="#ff2a1a"/>
+<circle cx="722" cy="592" r="4" fill="#123a16"/>
+
+<g>
+  <rect x="418" y="620" width="5" height="16" fill="#5a4632"/><ellipse cx="420" cy="610" rx="17" ry="14" fill="#4d7a3d"/>
+  <rect x="836" y="622" width="5" height="16" fill="#5a4632"/><ellipse cx="838" cy="612" rx="16" ry="13" fill="#3f6631"/>
+  <rect x="240" y="552" width="4" height="12" fill="#5a4632"/><ellipse cx="242" cy="544" rx="12" ry="10" fill="#4d7a3d"/>
+  <rect x="1010" y="552" width="4" height="12" fill="#5a4632"/><ellipse cx="1012" cy="544" rx="12" ry="10" fill="#3f6631"/>
+</g>
+
+
+<rect width="1280" height="720" fill="#ff9c4d" opacity="0.07"/>
+
+<rect width="1280" height="720" fill="url(#vig)"/>
+
+<g>
+  <rect x="20" y="18" width="240" height="248" rx="10" fill="#080b12" opacity="0.85"/>
+  <rect x="20" y="18" width="240" height="248" rx="10" fill="none" stroke="#8caad2" stroke-opacity="0.25"/>
+  <text x="34" y="40" font-size="12" font-weight="bold" fill="#f0e6d2">HITECH CITY · CYBER TOWERS JN</text>
+  <text x="34" y="54" font-size="8" fill="#7d8896" letter-spacing="1.5">DIGITAL TWIN — DEMO DATA</text>
+  <text x="34" y="76" font-size="8" fill="#7d8896" letter-spacing="1">NETWORK HEALTH</text>
+  <text x="34" y="94" font-size="16" fill="#ffd98a">47<tspan font-size="10" fill="#9aa4af">/100</tspan></text>
+  <rect x="34" y="100" width="212" height="4" rx="2" fill="#2a2f38"/>
+  <rect x="34" y="100" width="100" height="4" rx="2" fill="url(#hbar)"/>
+  <text x="34" y="122" font-size="8" fill="#7d8896" letter-spacing="1">AVG JUNCTION FLOW</text><text x="34" y="140" font-size="16" fill="#ffd98a">10,031<tspan font-size="10" fill="#9aa4af"> veh/hr</tspan></text>
+  <text x="34" y="162" font-size="8" fill="#7d8896" letter-spacing="1">AVG DELAY / VEHICLE</text><text x="34" y="180" font-size="16" fill="#ffd98a">92<tspan font-size="10" fill="#9aa4af"> s</tspan></text>
+  <text x="34" y="202" font-size="8" fill="#7d8896" letter-spacing="1">IDLING CO2</text><text x="34" y="220" font-size="16" fill="#ffd98a">244.4<tspan font-size="10" fill="#9aa4af"> kg/hr</tspan></text>
+  <text x="34" y="231" font-size="7" font-style="italic" fill="#5f6a76">modelled estimate</text>
+  <text x="34" y="248" font-size="8" fill="#7d8896" letter-spacing="1">IDLING FUEL</text>
+  <text x="140" y="248" font-size="12" fill="#ffd98a">105.8<tspan font-size="9" fill="#9aa4af"> L/hr</tspan></text>
+</g>
+
+<g font-size="10" letter-spacing="1">
+  <rect x="1112" y="18" width="148" height="26" rx="6" fill="#3c2a08" opacity="0.88" stroke="#ffbe5a" stroke-opacity="0.6"/><text x="1186" y="35" fill="#ffd98a" text-anchor="middle">DEMO</text>
+  <rect x="1112" y="50" width="148" height="26" rx="6" fill="#0d1118" opacity="0.88" stroke="#8caad2" stroke-opacity="0.25"/><text x="1186" y="67" fill="#cfd6de" text-anchor="middle">NIGHT</text>
+  <rect x="1112" y="82" width="148" height="26" rx="6" fill="#0d1118" opacity="0.88" stroke="#8caad2" stroke-opacity="0.25"/><text x="1186" y="99" fill="#cfd6de" text-anchor="middle">RAIN</text>
+  <rect x="1112" y="114" width="148" height="26" rx="6" fill="#0d1118" opacity="0.88" stroke="#8caad2" stroke-opacity="0.25"/><text x="1186" y="131" fill="#cfd6de" text-anchor="middle">CINEMATIC</text>
+  <rect x="1112" y="146" width="46" height="24" rx="6" fill="#3c2a08" opacity="0.88" stroke="#ffbe5a" stroke-opacity="0.6"/><text x="1135" y="162" fill="#ffd98a" text-anchor="middle">1×</text>
+  <rect x="1163" y="146" width="46" height="24" rx="6" fill="#0d1118" opacity="0.88" stroke="#8caad2" stroke-opacity="0.25"/><text x="1186" y="162" fill="#cfd6de" text-anchor="middle">10×</text>
+  <rect x="1214" y="146" width="46" height="24" rx="6" fill="#0d1118" opacity="0.88" stroke="#8caad2" stroke-opacity="0.25"/><text x="1237" y="162" fill="#cfd6de" text-anchor="middle">60×</text>
+</g>
+
+<rect x="430" y="676" width="420" height="26" rx="6" fill="#3c2a08" opacity="0.9" stroke="#ffbe5a" stroke-opacity="0.4"/>
+<text x="640" y="693" font-size="10" text-anchor="middle" fill="#ffd98a">Showing demo data — add your TomTom key for live traffic</text>
+<text x="24" y="706" font-size="8" fill="#9aa4af" opacity="0.85">drag to orbit · scroll to zoom · click the rotary island for junction stats</text>
+</svg>

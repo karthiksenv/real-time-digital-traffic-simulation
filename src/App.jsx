@@ -53,7 +53,7 @@ export default function App() {
         shadows
         dpr={[1, 1.75]}
         camera={{ position: [155, 58, 170], fov: 48, near: 0.5, far: 1600 }}
-        gl={{ antialias: true }}
+        gl={{ antialias: true, preserveDrawingBuffer: true }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.toneMappingExposure = 1.05;
